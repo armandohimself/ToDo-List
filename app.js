@@ -4,7 +4,9 @@ const app = express(); //tell your program that the name app is what is tied to 
 
 app.set('view engine', 'ejs'); //tells app to set ejs as the view engine
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true})); //if your sending form data you must specify this
+
+app.use(express.static("public"));
 
 var items = [];
 
