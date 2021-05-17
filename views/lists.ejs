@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's Your ToDo?</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <h2>Today's date is <%= kindOfDay %>!</h2>
+    <p>What's your to-do?</p>
+
+    <form method="POST" action="/">
+        <label for="to-do">To-Do Title</label>
+        <input type="text" name="todo">
+
+        <input type="submit" value="Submit Me">
+    </form>
+
+    <h2>Your ToDo's for today</h2>
+    <ul>
+        <li>An item</li>
+        <% for(var i = 0; i<ToDoitems.length; i++) { %>
+            <li><%= ToDoitems[i] %></li>
+        <% } %>
+    </ul>
+</body>
+</html>
