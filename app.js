@@ -8,30 +8,47 @@ app.use(express.urlencoded({extended: true})); //if your sending form data you m
 
 app.use(express.static("public"));
 
-var items = [];
+let items = [];
+let workItems = [];
 
+//* Root Route
 app.get("/", function(req, res) {
 
     console.log(req.body);
 
-    var today = new Date();
-    var currentDay = today.getDay();
-    var dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
-    var day = dayArr[currentDay];
+    let today = new Date();
+    let currentDay = today.getDay();
+    let dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
+    let day = dayArr[currentDay];
 
-    res.render('lists', {kindOfDay:day, ToDoitems: items});
+    res.render('lists', {listTitle: day, ToDoitems: items});
     //end
 });
 
 app.post("/", function(req, res) {
     console.log(req.body);
-    console.log(req.body.todo);
 
-    item = req.body.todo;
-    items.push(item);
+    let item = req.body.todo;
 
-    //res.render("lists", {ToDoitem: item}); can't use this because ToDoitem is not defined when loading html an app.get
-    res.redirect("/");
+    if(req.body.list === "Work") {
+        console.log("Got through if");
+        workItems.push(item);
+        res.redirect("/work");
+    } else {
+        items.push(item);
+        //res.render("lists", {ToDoitem: item}); can't use this because ToDoitem is not defined when loading html an app.get
+        res.redirect("/");
+    }
+    
+});
+
+//* Work Route
+app.get("/work", function(req, res) {
+    res.render("lists", {listTitle: "Work List", ToDoitems: workItems});
+});
+
+app.post("/work", function(req, res) {
+    
 });
 
 app.listen(3000, function() {

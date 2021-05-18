@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What's Your ToDo?</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+<%- include('header'); -%>
 
     <div class="box" id="heading">
-        <h2>Today's date is <%= kindOfDay %>!</h2>
+        <h2><%= listTitle %></h2>
     </div>
 
     <div class="box">
@@ -23,9 +14,8 @@
 
         <form class="item" method="POST" action="/">
             <input type="text" name="todo" placeholder="New Item" autocomplete="off">
-            <button type="submit" name="button">+</button>
+            <button type="submit" name="list" value=<%= listTitle %> >+</button>
         </form>
     </div>
-    
-</body>
-</html>
+
+<%- include('footer'); -%>
