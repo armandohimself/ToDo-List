@@ -1,4 +1,8 @@
+const { mapValues } = require("async");
 const express = require("express"); //'import' over this light-weight server
+const date = require(__dirname + "/date.js"); //import our javascript module that we created at the root directory
+
+console.log(date); //js allows for modules to exported and here you can see the functions we've exported for us to use
 
 const app = express(); //tell your program that the name app is what is tied to the server
 
@@ -16,10 +20,7 @@ app.get("/", function(req, res) {
 
     console.log(req.body);
 
-    let today = new Date();
-    let currentDay = today.getDay();
-    let dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
-    let day = dayArr[currentDay];
+    let day = date.getDay();
 
     res.render('lists', {listTitle: day, ToDoitems: items});
     //end
